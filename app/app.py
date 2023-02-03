@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 import uvicorn
-from main import unique_letter
+from app.main import unique_letter
 
 app = FastAPI()
 
@@ -20,4 +20,4 @@ async def result(text: str):
 
 
 if __name__ == '__main__':
-    uvicorn.run('app:app', host='localhost', reload=True, port=8000)
+    uvicorn.run('app:app', host='127.0.0.1', reload=True, port=8000)

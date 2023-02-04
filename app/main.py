@@ -8,24 +8,18 @@ def unique_letter(text: str) -> str:
 
     ls = []
     for i in s.split():
-        c = 0
-        if len(i) == i.count(i[c]) and len(i) != 1:
-            continue
-        else:
-            if i.count(i[c]) != 1:
-                while i.count(i[c]) != 1:
-                    c += 1
-                else:
-                    ls.append(i[c])
+        for j in i:
+            if i.count(j) == 1:
+                ls.append(j)
+                break
             else:
-                ls.append(i[c])
+                continue
 
     for i in ls:
-        if ls.count(i) != 1:
-            continue
-        else:
+        if ls.count(i) == 1:
             return f'Unique letter: {i}'
-
+        else:
+            continue
 
 if __name__ == '__main__':
     print("Enter/Paste your content. Double Enter to finish.\n")

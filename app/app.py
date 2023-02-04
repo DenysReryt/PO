@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Request, Form
+from fastapi import FastAPI, Request, Form
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 import uvicorn
@@ -15,12 +15,12 @@ async def root(request: Request):
 
 
 @app.post('/postdata/', response_class=HTMLResponse)
-async def postdata(request: Request, text: str = Form()):
+async def postdata(request: Request, text: str = Form(default='')):
     result = unique_letter(text)
     if result is not None:
         return templates.TemplateResponse('data.html', {'request': request, 'result': result})
     else:
-        raise HTTPException(status_code=404, detail='No unique letter was found')
+        return templates.TemplateResponse('data.html', {'request': request, 'result': 'No unique letter was found'})
 
 
 if __name__ == '__main__':

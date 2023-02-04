@@ -22,5 +22,8 @@ def unique_letter(text: str) -> str:
             continue
 
 if __name__ == '__main__':
-    print("Enter/Paste your content. Double Enter to finish.\n")
-    print(unique_letter("\n".join(iter(input, ""))))
+    result = unique_letter(input("Enter a text: "))
+    if result is not None:
+        print(f"The first unique letter: {result}")
+    else:
+        print("No unique letter was found")

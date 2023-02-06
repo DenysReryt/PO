@@ -4,10 +4,8 @@ from fastapi.responses import HTMLResponse
 import uvicorn
 from app.main import unique_letter
 from fastapi.middleware.cors import CORSMiddleware
-from starlette.middleware.httpsredirect import HTTPSRedirectMiddleware
 
 app = FastAPI()
-app.add_middleware(HTTPSRedirectMiddleware)
 
 app.add_middleware(
     CORSMiddleware,

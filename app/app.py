@@ -9,14 +9,14 @@ from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 app = FastAPI()
 
 app.add_middleware(HTTPSRedirectMiddleware)
-# origins = ['http://localhost:8000',
-#            'http://0.0.0.0:8000']
+origins = ['http://localhost:8000',
+           'http://0.0.0.0:8000']
 
-# app.add_middleware(CORSMiddleware,
-#                    allow_origins=origins,
-#                    allow_credentials=True,
-#                    allow_methods=['*'],
-#                    allow_headers=['*'], )
+app.add_middleware(CORSMiddleware,
+                   allow_origins=origins,
+                   allow_credentials=True,
+                   allow_methods=['*'],
+                   allow_headers=['*'], )
 
 templates = Jinja2Templates(directory='templates/')
 
@@ -26,7 +26,7 @@ async def root(request: Request):
     return templates.TemplateResponse('index.html', {'request': request})
 
 
-@app.post('/postdata/', response_class=HTMLResponse)
+@app.post('/postdata', response_class=HTMLResponse)
 async def postdata(request: Request, text: str = Form(default='')):
     result = unique_letter(text)
     if result is not None:
